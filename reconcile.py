@@ -52,7 +52,9 @@ count = 0
 
 for _, _, event in latest.values():
     if event["status"] == "success":
-        total += Decimal(str(event["amount"]))
+        amount = str(event["amount"]).strip()
+        amount = amount.replace("₦", "").replace(",", "").replace("NGN", "").strip()
+        total += Decimal(amount)
         count += 1
 
 
